@@ -18,3 +18,15 @@ For specific, detailed instructions, look at the project instructions in the [Ud
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+#game method
+
+press on the grey card to begin playing. match the cards quickly to win.
+you have no one except you yourself to beat. so check how much time is taking you to play.
+the lower the seconds you have made the better you are. and also the higer the star you have made the better you are at this game.
+
+if you think you want to start again refresh using the repeat button.
+
+there you go.
+
+enjoy.
