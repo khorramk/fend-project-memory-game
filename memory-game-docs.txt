@@ -1,0 +1,13 @@
+mathching game
+
+first i used queryselector to grab the deck on the board
+then i write a empty array
+next i wrote function to store the list array to array so i can shuffle it later
+next i wrote a clear function to clear function clear the whole board of cards so i can recreate after shuffling
+next i shuffle the card using shufle function using the stackoverflow
+next i start creating the html using loop and using appenchild method
+next i write function to add event listeners to click cards.
+next i used flow method in function that is jumping one method from another after excution
+next i struglled to make time function then used stackoverflow and w3school to fix that.
+next i had the problem of repeat button to refresh i used window.location property to refesh the whole page when use clicks
+then i made the modal and added after user completes the game.
