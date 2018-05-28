@@ -3,15 +3,27 @@
  */
 //selecting cards
 const list = document.querySelectorAll('.card');
+//this empty cards for addding then shuffling the cards
 let cardsarray = [];
+//this array for adding all open cards
 let openCards = [];
+//selecting the moves from html code
 const move = document.querySelector('.moves');
+//selecting the modal
 const modal = document.getElementById('myModal');
+//selecting the time
 const clock = document.querySelector(".clock");
 let time, firstCard = [], timeStart;
-
+//selecting the number of stars and its length
 let star = document.querySelectorAll(".fa-star").length;
+const stars = document.querySelector(".stars");
 //storing cards in array
+/*
+**storeCards puts the cureent cards fromt he html nodes to an array
+**and puts each cards to removeClass
+**and sets the move anc clock to 0
+**also calls clearcard() after looping
+*/
 const storeCards = function () {
     for (let i = 0; i < list.length; i++) {
         cardsarray.push(list[i]);
@@ -23,12 +35,18 @@ const storeCards = function () {
     clearCard();
     console.log("true");
 };
+/*this function takes the card and removes the existing class
+
+*/
 const removeClass = function (openCard) {
     openCard.classList.remove("show");
     openCard.classList.remove("open");
     openCard.classList.remove("match");
 }
 //removing cards from html
+/*this function removes the child nodes of card before shuffling begins
+
+*/
 const clearCard = function () {
     const myNode = document.querySelector(".deck");
     while (myNode.firstChild) {
@@ -41,6 +59,10 @@ const clearCard = function () {
 
 //get array
 //
+/**this function start takes the existing cardsarray in shufflearray function and gets the return array and loops and add it ot the dom
+**then calls the clicking function 
+
+*/
 const start = function () {
     const s = shufleArray();
     let cards = null;
@@ -55,7 +77,9 @@ const start = function () {
 
     console.log("worked");
 };
+/*this functions timer sets the time when it is called for clock and passed to finished function
 
+*/
 const timer = function () {
 
 
@@ -74,7 +98,10 @@ const timer = function () {
 
 
 };
+/*this function takes one arguement time and return that time
+**if all the cards are not open.
 
+*/
 const finished = function (time) {
     const cards = document.querySelectorAll(".open");
     const repeat = document.querySelector(".fa-repeat");
@@ -115,7 +142,10 @@ const shufleArray = function () {
     return x;
 
 };
-
+/*
+*this function is for making click for each card.
+**the feature is pased to another function
+*/
 const touchCard = function () {
     const tDeck = document.querySelectorAll('.card');
     for (let i = 0; i < tDeck.length; i++) {
@@ -123,15 +153,25 @@ const touchCard = function () {
     }
 
 };
-
+/*this function is takes the card and add click event
+**
+*/
 const eventTouch = function (card) {
     card.addEventListener('click', clickFunc, false);
 };
-
+/*this functiion clickFunc is from the click eventlistenr
+**it checks for whether card is open or match
+**if not then add the open class to it
+**and passes 3 function
+**one function add list
+** seocnd function increases moves
+**third function is to start the time when the card is open
+*/
 const clickFunc = function () {
 
     if (this.classList.contains("match") || (this.classList.contains("open") && this.classList.contains("show"))) {
         deleteListner(this);
+
     }
     else {
         this.classList.add('open');
@@ -144,6 +184,9 @@ const clickFunc = function () {
     }
 
 };
+
+/*this function is for checking and starting the timer
+*/
 const startTime = function (card) {
     firstCard.push(card);
     if (firstCard.length > 1) {
@@ -155,13 +198,15 @@ const startTime = function (card) {
     }
 
 }
-
+/*this function takes the clicked card and it to list and pass a function to check
+*/
 const listOpen = function (Ocard) {
     openCards.push(Ocard);
 
     checkValue();
 };
-
+/*this function checks values  of opencard length and pass function of match
+*/
 const checkValue = function () {
     if (openCards === null || openCards.length === 1) {
         console.log(true);
@@ -185,18 +230,27 @@ const checkValue = function () {
 
 };
 
+/*this function is to loop through the cards and match the values
+*/
 const pairMatch = function () {
 
     for (let s = 0; s < openCards.length - 1; s++) {
         let pairValue = openCards[s].firstElementChild;
-
+        const card1 = openCards[s];
         for (let c = s + 1; c < openCards.length; c++) {
             const pairValue2 = openCards[c].firstElementChild;
+            const card2 = openCards[c];
+            /// notTouch(card1, card2);
             matchPair(pairValue2, pairValue);
         }
     }
 };
+const notTouch = function (item, item2) {
+    ///
 
+}
+/*this function is to match the cards thas has beeen passed in by pairmatch
+*/
 const matchPair = function (item2, item1) {
     //checking wheather items has the current deck
     if (item1.classList.contains("fa-bolt") && item2.classList.contains("fa-bolt")) {
@@ -227,22 +281,25 @@ const matchPair = function (item2, item1) {
         return true;
     } else {
         clearShow(item1, item2);
-
         console.log('false');
         return false;
     }
 
 
 };
-
+/*this function is to  clear the opencards array and using the timingFunc function
+*/
 const clearShow = function (cards, cards2) {
     const index1 = openCards.indexOf(cards);
     const index2 = openCards.indexOf(cards2);
     console.log(index1);
+
     if ((index1 >= -1)) {
         openCards.splice(index1, 1);
         openCards.splice(index2, 1);
+        thirdCard(cards, cards2);
         timingFunc(cards, cards2);
+
         console.log(true);
         return true;
         //hideCard(cards, cards2);
@@ -254,12 +311,34 @@ const clearShow = function (cards, cards2) {
 
     console.log('true');
 };
+/*this function is to delete the other card while clicked card is open
+*/
+const thirdCard = function (card, card2) {
+    const cards = document.querySelectorAll(".card");
+    const items = card.parentNode;
+    const items2 = card2.parentNode;
+    if (items.classList.contains("open") && items2.classList.contains("open")) {
+        preventClick();
+        console.log(true);
+        return true
+    } else {
 
+        return false;
+        console.log(false);
+    }
+
+}
+
+    ;
+
+/*this function is to deletelistner from clicked objects
+*/
 const deleteListner = function (obj) {
     obj.removeEventListener('click', clickFunc, false);
     console.log(true);
 };
-
+/*this function is to remove touch from match cards
+*/
 const removeTouch = function (item, item2) {
     const pitem = item.parentNode;
     const pitem2 = item2.parentNode;
@@ -274,7 +353,8 @@ const removeTouch = function (item, item2) {
     console.log('true');
 };
 
-
+/*this function increases the move in dom after card is clicked
+*/
 const countMove = function (card) {
     ///
 
@@ -284,18 +364,24 @@ const countMove = function (card) {
         getStars();
     }
 };
-
+/*this function is used to hide card after some seconds when second card is clicked
+*/
 function timingFunc(item1, item2) {
     const mainCard = item1.parentNode;
     const mainCard2 = item2.parentNode;
+
     setTimeout(function () {
         mainCard.classList.remove('show', 'open');
         mainCard2.classList.remove('show', 'open');
+        //thirdCard(item1, item2);
         touchCard();
         console.log("timing");
-    }, 2000, item1, item2);
-};
+    }, 1500, item1, item2);
 
+    //thirdCard(item1, item2);
+};
+/*this function is used to refresh the page after game is finished or restarting
+*/
 const restart = function () {
     const repeat = document.querySelector('.fa-repeat');
     const timeClock = document.querySelector(".clock");
@@ -305,14 +391,15 @@ const restart = function () {
 
     });
 };
-
+/*this function is to to show the final score after selecting all the cards
+*/
 const finalScore = function () {
     const matchedCards = document.querySelectorAll('.match');
-    clearInterval(timeStart);
+    //clearInterval(timeStart);
     containsClass(matchedCards);
     console.log(true);
 };
-
+/*this function is to  cehck for match class after game is won and showing the scores*/
 const containsClass = function (array) {
     // for(let i=16; i >= array.length; --i){
     if (array.length === 16) {
@@ -327,7 +414,8 @@ const containsClass = function (array) {
 
 
 };
-
+/*this function is to diplay the score and adding a button with click event to refresh the game
+*/
 const display = function () {
     const btn = document.getElementById("myBtn");
     btn.addEventListener('click', function () {
@@ -342,21 +430,27 @@ const display = function () {
     preventClick();
     return true;
 };
-
+/*this function is to delte the stars affter matching somes moves
+*/
 const getStars = function () {
-    const stars = document.querySelector(".fa-star");
+
 
     //const matchingCards = document.querySelectorAll(".match");
-    for (let i = moves.innerHTML; i > 32; --star) {
-        stars.remove();
-        console.log("removed");
 
 
+    if (move.innerHTML === 32 && move.innerHTML === 40 && move.innerHTML === 50) {
+        stars.removeChild(stars.firstChild);
     }
 
 
-};
 
+
+
+
+
+};
+/*this function is to show rate after modal pops up
+*/
 const showRate = function (item) {
     const numOfMove = document.getElementById("moves");
     numOfMove.textContent = ` number of moves made ${move.innerHTML}`;
@@ -365,7 +459,8 @@ const showRate = function (item) {
     timeSecond.innerHTML = `time completed by ${clock.innerHTML}`;
     rate.textContent = ` performance is ${item} stars`;
 };
-
+/*this function is to prevent click on every card
+*/
 const preventClick = function () {
     for (let i = 0; i > list.length; i++) {
         deleteListner(list[i]);
@@ -373,7 +468,8 @@ const preventClick = function () {
     }
 };
 
-
+/*this is an window onclick to close the modal
+*/
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
