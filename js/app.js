@@ -39,9 +39,8 @@ const storeCards = function () {
 
 */
 const removeClass = function (openCard) {
-    openCard.classList.remove("show");
-    openCard.classList.remove("open");
-    openCard.classList.remove("match");
+    openCard.classList.remove("show", "open", "match");
+   
 }
 //removing cards from html
 /*this function removes the child nodes of card before shuffling begins
