@@ -64,13 +64,13 @@ const clearCard = function () {
 
 */
 const start = function () {
-    const s = shufleArray();
+    const shuffledArray = shufleArray();
     let cards = null;
     //looping through the array and adding html
-    for (let i = 0; i < s.length; i++) {
+    for (let i = 0; i < shuffledArray.length; i++) {
         const deck = document.querySelector(".deck");
         //const card =  document.createElement(s[i]);
-        deck.appendChild(s[i]);
+        deck.appendChild(shuffledArray[i]);
     }
 
     touchCard();
@@ -174,8 +174,8 @@ const clickFunc = function () {
 
     }
     else {
-        this.classList.add('open');
-        this.classList.add('show');
+        this.classList.add('open', 'show');
+        //this.classList.add('show');
         startTime(this);
         listOpen(this);
 
