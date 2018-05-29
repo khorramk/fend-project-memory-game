@@ -133,6 +133,14 @@ h1 {
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
+ .pop-up {
+     display: block;
+ }
+
+ .gone {
+     display: none;
+ }
+
 /* The Close Button */
 .close {
     color: #aaa;

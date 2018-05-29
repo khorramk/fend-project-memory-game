@@ -419,12 +419,12 @@ const display = function () {
     const btn = document.getElementById("myBtn");
     btn.addEventListener('click', function () {
 
-
-        modal.style.display = "none";
+       modal.classList.remove("pop-up");
+        modal.classList.add("gone");
         window.location.reload(true);
     });
 
-    modal.style.display = "block";
+    modal.classList.add("pop-up");
     showRate(star);
     preventClick();
     return true;
@@ -434,16 +434,17 @@ const display = function () {
 const getStars = function () {
 
 
-    //const matchingCards = document.querySelectorAll(".match");
-
-
-    if (move.innerHTML === 32 && move.innerHTML === 40 && move.innerHTML === 50) {
-        stars.removeChild(stars.firstChild);
+    if (move.innerHTML === '32' ) {
+        stars.removeChild(stars.childNodes[1]);
     }
 
+    if ( move.innerHTML === '40'){
+        stars.removeChild(stars.childNodes[1]);
+    }
 
-
-
+    if (move.innerHTML === '50'){
+        stars.removeChild(stars.childNodes[1]);
+    }
 
 
 
