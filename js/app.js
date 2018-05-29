@@ -375,7 +375,7 @@ function timingFunc(item1, item2) {
         //thirdCard(item1, item2);
         touchCard();
         console.log("timing");
-    }, 1500, item1, item2);
+    }, 500, item1, item2);
 
     //thirdCard(item1, item2);
 };
