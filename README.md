@@ -1,4 +1,7 @@
 # Memory Game Project
+#dependencies
+in order to play this game make sure you have bootstrap enabled and javascript nebaled on browsers
+this game is built on es2015 so make sure your browsers supports that.
 
 ## Table of Contents
 
@@ -30,3 +33,6 @@ if you think you want to start again refresh using the repeat button.
 there you go.
 
 enjoy.
+
+#interested how i built this game? check out:
+[memory-game-docs.txt](memory-game-docs.txt).
