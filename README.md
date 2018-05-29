@@ -7,6 +7,7 @@ this game is built on es2015 so make sure your browsers supports that.
 
 * [Instructions](#instructions)
 * [Contributing](#contributing)
+* [memory-game-docs.txt](memory-game-docs.txt).
 
 ## Instructions
 
